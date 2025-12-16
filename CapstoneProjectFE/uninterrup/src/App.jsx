@@ -5,7 +5,7 @@ import viteLogo from '/vite.svg'
 import './App.css'
 import AppLayout from "./layouts/AppLayout";
 import Homepage from "./pages/Homepage";
-
+import Dashboard from "./pages/Dashboard";
 
 
 export default function App() {
@@ -14,6 +14,7 @@ export default function App() {
       <AppLayout>
         <Routes>
           <Route path="/" element={<Homepage />} />
+          <Route path="/dashboard" element={<Dashboard />} />
         </Routes>
       </AppLayout>
     </BrowserRouter>

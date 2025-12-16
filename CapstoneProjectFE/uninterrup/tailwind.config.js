@@ -6,7 +6,11 @@ export default {
   ],
   darkMode: false,
   theme: {
-    extend: {},
+    extend: {
+      colors: {
+        custom_blue: '#34495e'
+      },
+    },
   },
   plugins: [],
 }

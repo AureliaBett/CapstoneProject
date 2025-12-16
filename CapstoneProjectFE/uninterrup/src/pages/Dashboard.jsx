@@ -7,6 +7,7 @@ const Dashboard = () => {
 
   useEffect(() => {
     getUPSUnits().then(data => {
+      console.log("DATA FROM API:", data);
       setUpsList(data);
       setLoading(false);
     });
@@ -20,10 +21,11 @@ const Dashboard = () => {
 
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
         {upsList.map(ups => (
-          <div key={ups.id} className="p-4 bg-white shadow rounded">
+          <div key={ups.id} className="p-4 bg-black shadow rounded">
             <p><b>Model:</b> {ups.model}</p>
             <p><b>Serial:</b> {ups.serial_number}</p>
             <p><b>Status:</b> {ups.status}</p>
+            <p><b>Client:</b> {ups.status}</p>
           </div>
         ))}
       </div>
