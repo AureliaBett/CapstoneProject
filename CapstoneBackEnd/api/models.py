@@ -8,12 +8,11 @@ class CustomUser(AbstractUser):
         ('engineer', 'Bench Engineer'),
         ('technician', 'Field Technician'), 
     )
-    username = models.CharField(max_length=150, unique=True)
-    email = models.EmailField(unique=True)
-    password = models.CharField(max_length=128)
+   
+    
     role = models.CharField( max_length=20,  choices=ROLES, default='technician', )
     work_phone = models.CharField(max_length=15, blank=True, null=True, default="")
-    job_number = models.IntegerField(default=0, blank=True, null=True)
+    
 
     def __str__(self):
         return f"{self.username} ({self.role})"
