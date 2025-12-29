@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import Client, UPS, CustomUser
+from .models import Client, UPS, CustomUser, RepairAssignment, RepairUpdate
 
 
 
@@ -36,3 +36,17 @@ class UPSSerializer(serializers.ModelSerializer):
         # Create the UPS with the associated client and branch
         ups = UPS.objects.create(client=client,  **validated_data)
         return ups
+    
+class RepairUpdateSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = RepairUpdate
+        fields = ['id', 'assignment', 'notes', 'attached_file', 'updated_at']
+
+class RepairAssignmentSerializer(serializers.ModelSerializer):
+    updates = RepairUpdateSerializer(many=True, read_only=True)
+    ups = serializers.PrimaryKeyRelatedField(queryset=UPS.objects.all())
+    engineer = serializers.PrimaryKeyRelatedField(queryset=CustomUser.objects.filter(role='engineer'))
+
+    class Meta:
+        model = RepairAssignment
+        fields = ['id', 'ups', 'engineer', 'assigned_date', 'updates']
